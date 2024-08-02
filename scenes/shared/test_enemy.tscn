@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://diow4kd24av6n"]
+
+[ext_resource type="Script" path="res://scripts/test_enemy.gd" id="1_waqmj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cxghq"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p4f72"]
+radius = 0.362475
+height = 1.02577
+
+[node name="TestEnemy" type="RigidBody3D" groups=["Enemies"]]
+collision_layer = 3
+collision_mask = 3
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_waqmj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.504002, 0)
+mesh = SubResource("CapsuleMesh_cxghq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000440359, 0.510316, -0.0144072)
+shape = SubResource("CapsuleShape3D_p4f72")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

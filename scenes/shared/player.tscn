@@ -4,14 +4,14 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_mvikn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cqkhd"]
-radius = 0.356595
-height = 1.21054
+radius = 0.676564
+height = 1.42795
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_mvikn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.624481, 0.00753546)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.745259, 0.00753546)
 shape = SubResource("CapsuleShape3D_cqkhd")
 
 [node name="GobotSkin" parent="." instance=ExtResource("1_c1dgc")]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ouvb0u4k7dr4"]
+
+[ext_resource type="PackedScene" uid="uid://cy36aygvs66pn" path="res://assets/models/gobot/gobot_skin.tscn" id="1_c1dgc"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_mvikn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cqkhd"]
+radius = 0.356595
+height = 1.21054
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_mvikn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.624481, 0.00753546)
+shape = SubResource("CapsuleShape3D_cqkhd")
+
+[node name="GobotSkin" parent="." instance=ExtResource("1_c1dgc")]
+
+[node name="PivotPlayer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.995416, -0.0956373, 0, 0.0956373, 0.995416, 0, 0, 0)
+
+[node name="PivotCam" type="Node3D" parent="PivotPlayer"]
+transform = Transform3D(1, 0, 0, 0, 0.929905, -0.3678, 0, 0.3678, 0.929905, 0, 1.49938, -2.57827)
+
+[node name="Camera3D" type="Camera3D" parent="PivotPlayer/PivotCam"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

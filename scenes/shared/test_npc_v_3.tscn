@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://deidk3pcie6rk"]
+
+[ext_resource type="PackedScene" uid="uid://cy36aygvs66pn" path="res://assets/models/gobot/gobot_skin.tscn" id="1_f5axm"]
+[ext_resource type="Script" path="res://scripts/test_npc_v_3.gd" id="1_qs223"]
+[ext_resource type="PackedScene" uid="uid://dkq5d1eri8t11" path="res://scenes/ui/dialogue_box_v3.tscn" id="2_mn772"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3y3y0"]
+radius = 0.515358
+height = 1.50892
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y2avt"]
+size = Vector3(1.71423, 1.47827, 1.2821)
+
+[node name="TestNPC V3" type="Area3D"]
+script = ExtResource("1_qs223")
+
+[node name="DialogueContainer" parent="." instance=ExtResource("2_mn772")]
+visible = false
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="GobotSkin" parent="RigidBody3D" instance=ExtResource("1_f5axm")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00339389, 0.741017, 0.000498533)
+shape = SubResource("CapsuleShape3D_3y3y0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00457764, 0.77776, 0.141052)
+shape = SubResource("BoxShape3D_y2avt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

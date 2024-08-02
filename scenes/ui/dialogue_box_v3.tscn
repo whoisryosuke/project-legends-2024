@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkq5d1eri8t11"]
+
+[ext_resource type="Texture2D" uid="uid://uc0ddemgcved" path="res://assets/ui/mini-ui-box.png" id="1_mvmb5"]
+[ext_resource type="Theme" uid="uid://xtcgu5sirbo3" path="res://assets/ui/default_theme.tres" id="2_ms8ow"]
+
+[node name="NinePatchRect" type="NinePatchRect"]
+custom_minimum_size = Vector2(0, 400)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -69.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_mvmb5")
+patch_margin_left = 32
+patch_margin_top = 33
+patch_margin_right = 104
+patch_margin_bottom = 36
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 24.0
+offset_right = 1848.0
+offset_bottom = 382.0
+
+[node name="Name" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_ms8ow")
+theme_override_colors/font_color = Color(0.372549, 0.372549, 0.498039, 1)
+theme_override_font_sizes/font_size = 48
+text = "Character Name"
+uppercase = true
+
+[node name="Speech" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1800, 290)
+layout_mode = 2
+theme = ExtResource("2_ms8ow")
+theme_override_colors/font_color = Color(0, 0, 0.25098, 1)
+theme_override_font_sizes/font_size = 72
+text = "420 blaze it"
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 3

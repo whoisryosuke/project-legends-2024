@@ -1,0 +1,148 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqqcx63716g3q"]
+
+[ext_resource type="Texture2D" uid="uid://c2ic8y4gx7ppa" path="res://assets/ui/dualsense/DualSense.Border.png" id="1_piwe1"]
+[ext_resource type="Texture2D" uid="uid://ya8de05rubed" path="res://assets/ui/dualsense/DPad/Default.png" id="2_gk32h"]
+[ext_resource type="Texture2D" uid="uid://b60hod02elk3g" path="res://assets/ui/dualsense/FaceButton/Default.png" id="3_mgymd"]
+[ext_resource type="Texture2D" uid="uid://bamai71ihaibs" path="res://assets/ui/dualsense/FaceButtonTiny/Default.png" id="4_ofchg"]
+[ext_resource type="Texture2D" uid="uid://btyxwfpk4to7v" path="res://assets/ui/dualsense/TriggerButton/Default.png" id="5_wot4p"]
+[ext_resource type="Texture2D" uid="uid://dgqckjfy7wtrh" path="res://assets/ui/dualsense/AnalogStick/Default.png" id="6_go8bt"]
+[ext_resource type="Texture2D" uid="uid://bqf1j153mi2da" path="res://assets/ui/dualsense/Touchpad/Default.png" id="7_xwwij"]
+
+[node name="DebugGamepadUI" type="AspectRatioContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Gamepad" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_piwe1")
+
+[node name="DPad Up" type="TextureRect" parent="Gamepad"]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 127.0
+offset_right = 221.0
+offset_bottom = 199.0
+texture = ExtResource("2_gk32h")
+
+[node name="DPad Left" type="TextureRect" parent="Gamepad"]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 235.0
+offset_right = 168.0
+offset_bottom = 307.0
+rotation = 4.71239
+texture = ExtResource("2_gk32h")
+
+[node name="DPad Right" type="TextureRect" parent="Gamepad"]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 182.0
+offset_right = 330.0
+offset_bottom = 254.0
+rotation = 1.5708
+texture = ExtResource("2_gk32h")
+
+[node name="DPad Down" type="TextureRect" parent="Gamepad"]
+layout_mode = 0
+offset_left = 218.0
+offset_top = 289.0
+offset_right = 276.0
+offset_bottom = 361.0
+rotation = 3.14159
+texture = ExtResource("2_gk32h")
+
+[node name="Square" type="TextureRect" parent="Gamepad"]
+offset_left = 712.0
+offset_top = 175.0
+offset_right = 781.0
+offset_bottom = 244.0
+texture = ExtResource("3_mgymd")
+
+[node name="Cross" type="TextureRect" parent="Gamepad"]
+layout_mode = 0
+offset_left = 787.0
+offset_top = 249.0
+offset_right = 856.0
+offset_bottom = 318.0
+texture = ExtResource("3_mgymd")
+
+[node name="Triangle" type="TextureRect" parent="Gamepad"]
+offset_left = 787.0
+offset_top = 101.0
+offset_right = 856.0
+offset_bottom = 170.0
+texture = ExtResource("3_mgymd")
+
+[node name="Circle" type="TextureRect" parent="Gamepad"]
+offset_left = 862.0
+offset_top = 175.0
+offset_right = 931.0
+offset_bottom = 244.0
+texture = ExtResource("3_mgymd")
+
+[node name="Start" type="TextureRect" parent="Gamepad"]
+layout_mode = 0
+offset_left = 725.0
+offset_top = 71.0
+offset_right = 765.0
+offset_bottom = 128.0
+texture = ExtResource("4_ofchg")
+
+[node name="Select" type="TextureRect" parent="Gamepad"]
+offset_left = 287.0
+offset_top = 71.0
+offset_right = 327.0
+offset_bottom = 128.0
+scale = Vector2(-1, 0.995)
+texture = ExtResource("4_ofchg")
+
+[node name="L2" type="TextureRect" parent="Gamepad"]
+offset_left = 122.0
+offset_right = 261.0
+offset_bottom = 52.0
+texture = ExtResource("5_wot4p")
+
+[node name="L1" type="TextureRect" parent="Gamepad"]
+offset_left = 123.0
+offset_top = 14.0
+offset_right = 262.0
+offset_bottom = 66.0
+texture = ExtResource("5_wot4p")
+
+[node name="AnalogLeft" type="TextureRect" parent="Gamepad"]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 290.0
+offset_right = 404.0
+offset_bottom = 410.0
+texture = ExtResource("6_go8bt")
+
+[node name="AnalogRight" type="TextureRect" parent="Gamepad"]
+offset_left = 610.0
+offset_top = 290.0
+offset_right = 730.0
+offset_bottom = 410.0
+texture = ExtResource("6_go8bt")
+
+[node name="Touchpad" type="TextureRect" parent="Gamepad"]
+layout_mode = 0
+offset_left = 303.0
+offset_top = 24.0
+offset_right = 712.0
+offset_bottom = 247.0
+texture = ExtResource("7_xwwij")
+
+[node name="R2" type="TextureRect" parent="Gamepad"]
+offset_left = 891.0
+offset_right = 1030.0
+offset_bottom = 52.0
+scale = Vector2(-1, 1)
+texture = ExtResource("5_wot4p")
+
+[node name="R1" type="TextureRect" parent="Gamepad"]
+offset_left = 890.0
+offset_top = 14.0
+offset_right = 1029.0
+offset_bottom = 66.0
+scale = Vector2(-1, 1)
+texture = ExtResource("5_wot4p")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkq5d1eri8t11"]
+[gd_scene load_steps=4 format=3 uid="uid://dkq5d1eri8t11"]
 
 [ext_resource type="Texture2D" uid="uid://uc0ddemgcved" path="res://assets/ui/mini-ui-box.png" id="1_mvmb5"]
+[ext_resource type="Script" path="res://scripts/dialogue_box_v3.gd" id="2_1y558"]
 [ext_resource type="Theme" uid="uid://xtcgu5sirbo3" path="res://assets/ui/default_theme.tres" id="2_ms8ow"]
 
-[node name="NinePatchRect" type="NinePatchRect"]
+[node name="DialogueManager" type="NinePatchRect"]
 custom_minimum_size = Vector2(0, 400)
 anchors_preset = 12
 anchor_top = 1.0
@@ -17,6 +18,7 @@ patch_margin_left = 32
 patch_margin_top = 33
 patch_margin_right = 104
 patch_margin_bottom = 36
+script = ExtResource("2_1y558")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0

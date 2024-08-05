@@ -10,6 +10,7 @@ const JUMP_VELOCITY = 4.5
 @onready var projectile_model = load("res://scenes/shared/projectile.tscn")
 
 # Local Variables
+var input_disabled = false
 var speed = SPEED
 var cam_turn = 0
 var model_angle = 0
@@ -25,6 +26,9 @@ func _input(event):
 		shoot_projectile()
 
 func _physics_process(delta):
+	if input_disabled:
+		return
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta

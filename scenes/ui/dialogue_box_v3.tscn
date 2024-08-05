@@ -47,3 +47,6 @@ text = "420 blaze it"
 autowrap_mode = 2
 clip_text = true
 text_overrun_behavior = 3
+
+[node name="CloseTimer" type="Timer" parent="."]
+one_shot = true

@@ -23,11 +23,13 @@ const DPAD_KEYS = ["DPad Up","DPad Down","DPad Left","DPad Right"]
 const FUNC_KEYS = ["Start","Select"]
 const DEADZONE = 0.1
 
+@export var ui_scale = 0.5
+
 func _ready():
 	# Place UI into scene
 	var gamepad_ui = GAMEPAD_UI_SCENE.instantiate()
-	gamepad_ui.scale.x = 0.5
-	gamepad_ui.scale.y = 0.5
+	gamepad_ui.scale.x = ui_scale
+	gamepad_ui.scale.y = ui_scale
 	scene_root.add_child.call_deferred(gamepad_ui)
 	
 func _input(event):

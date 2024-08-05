@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 DebugGamepad="*res://scripts/debug_gamepad.gd"
+GlobalPlayer="*res://scripts/global_player.gd"
+GameUI="*res://scenes/ui/game_ui.tscn"
 
 [display]
 

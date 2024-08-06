@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://crtibe1hgvkyj"]
+[gd_scene load_steps=11 format=3 uid="uid://crtibe1hgvkyj"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_wmhqy"]
+[ext_resource type="Texture2D" uid="uid://dnuksgn1ubgo0" path="res://assets/vfx/projectile-explosion-full.png" id="2_fei6j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a05tt"]
 radius = 0.0643937
@@ -10,12 +11,119 @@ height = 0.246099
 radius = 0.05
 height = 0.2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mavkj"]
+albedo_color = Color(1, 0.690196, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x4dv8"]
+size = Vector2(0.5, 0.5)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_psntm"]
-albedo_color = Color(0, 0, 1, 1)
+transparency = 1
+albedo_texture = ExtResource("2_fei6j")
+uv1_scale = Vector3(0.15, 1, 1)
+
+[sub_resource type="Animation" id="Animation_u4q4l"]
+resource_name = "explode"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExplosionVFX:surface_material_override/0:uv1_offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.17, 0, 0), Vector3(0.34, 0, 0), Vector3(0.5, 0, 0), Vector3(0.67, 0, 0), Vector3(0.835, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExplosionVFX:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"destroy_projectile"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Projectile:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_4a3mj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExplosionVFX:surface_material_override/0:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExplosionVFX:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Projectile:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wpq3p"]
+_data = {
+"RESET": SubResource("Animation_4a3mj"),
+"explode": SubResource("Animation_u4q4l")
+}
 
 [node name="Projectile" type="RigidBody3D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 6
+collision_mask = 6
 gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
@@ -25,14 +133,25 @@ script = ExtResource("1_wmhqy")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.45218, 0)
 shape = SubResource("CapsuleShape3D_a05tt")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Projectile" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, -0.000518595, -0.000833504, -0.000833263, 0.000455456, -1, 0.000518981, 1, 0.000455016, 0, 0.45218, 0)
 mesh = SubResource("CapsuleMesh_nnwoe")
+surface_material_override/0 = SubResource("StandardMaterial3D_mavkj")
+
+[node name="ExplosionVFX" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.001, 0.452, 0)
+visible = false
+mesh = SubResource("PlaneMesh_x4dv8")
 surface_material_override/0 = SubResource("StandardMaterial3D_psntm")
 
 [node name="DestroyTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wpq3p")
+}
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

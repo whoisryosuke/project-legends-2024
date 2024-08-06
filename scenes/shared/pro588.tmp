@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://crtibe1hgvkyj"]
+
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_wmhqy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a05tt"]
+radius = 0.0643937
+height = 0.246099
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_nnwoe"]
+radius = 0.05
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_psntm"]
+albedo_color = Color(0, 0, 1, 1)
+
+[node name="Projectile" type="RigidBody3D"]
+collision_layer = 6
+collision_mask = 6
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_wmhqy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.45218, 0)
+shape = SubResource("CapsuleShape3D_a05tt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, -0.000518595, -0.000833504, -0.000833263, 0.000455456, -1, 0.000518981, 1, 0.000455016, 0, 0.45218, 0)
+mesh = SubResource("CapsuleMesh_nnwoe")
+surface_material_override/0 = SubResource("StandardMaterial3D_psntm")
+
+[node name="DestroyTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

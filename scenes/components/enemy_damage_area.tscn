@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ced55oxeu6kc"]
+
+[ext_resource type="Script" path="res://scripts/enemy_damage_area.gd" id="1_aw0r7"]
+
+[node name="EnemyDamageArea" type="Area3D"]
+script = ExtResource("1_aw0r7")
+
+[node name="WaitTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

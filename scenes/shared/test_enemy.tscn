@@ -1,6 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://diow4kd24av6n"]
+[gd_scene load_steps=7 format=3 uid="uid://diow4kd24av6n"]
 
 [ext_resource type="Script" path="res://scripts/test_enemy.gd" id="1_waqmj"]
+[ext_resource type="PackedScene" uid="uid://osr63qf87du5" path="res://scenes/components/health.tscn" id="2_u1yrr"]
+[ext_resource type="PackedScene" uid="uid://ced55oxeu6kc" path="res://scenes/components/enemy_damage_area.tscn" id="3_t1kd7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6cub5"]
+radius = 0.254452
+height = 1.03613
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_cxghq"]
 radius = 0.25
@@ -17,13 +23,18 @@ max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_waqmj")
 
+[node name="EnemyCollider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51094, 0)
+shape = SubResource("CapsuleShape3D_6cub5")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.504002, 0)
 mesh = SubResource("CapsuleMesh_cxghq")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Health" parent="." instance=ExtResource("2_u1yrr")]
+
+[node name="EnemyDamageArea" parent="." instance=ExtResource("3_t1kd7")]
+
+[node name="DamageCollider" type="CollisionShape3D" parent="EnemyDamageArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000440359, 0.510316, -0.0144072)
 shape = SubResource("CapsuleShape3D_p4f72")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

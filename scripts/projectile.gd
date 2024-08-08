@@ -9,7 +9,7 @@ var direction : float
 var exploding :bool = false
 
 # Constants
-const SPEED = 0.1
+const SPEED = 10
 const DESTROY_TIME = 3
 
 func _ready():
@@ -17,9 +17,7 @@ func _ready():
 	position = initial_position
 	rotation = initial_rotation
 	rotation.y = direction
-	#$ExplosionVFX.rotation.x = 0
-	$ExplosionVFX.rotation.x = direction
-	print("explode rotation intial: ", $ExplosionVFX.rotation.x)
+	#$ExplosionVFX.rotation.x = direction
 	#apply_impulse(transform.basis.z, -transform.basis.z * SPEED)
 
 func _physics_process(delta):
@@ -27,12 +25,12 @@ func _physics_process(delta):
 	if destroy_timer.is_stopped():
 		destroy_projectile()
 		
+	# When exploding - stop all motion
 	if exploding:
 		return
 		
 	# Move project forward
-	
-	position += Vector3(0,0,SPEED).rotated(Vector3(0,1,0), direction)
+	position += Vector3(0,0,SPEED * delta).rotated(Vector3(0,1,0), direction)
 	#position += Vector3(1,0,1).rotated(Vector3(0,1,0), initial_rotation.z)
 	
 	
@@ -50,7 +48,9 @@ func _on_body_entered(body):
 	# Hit an enemy?
 	if body.is_in_group("Enemies"):
 		print("Hit an enemy!")
-		body.damage(10)
+		var health_component = body.get_node("Health")
+		if health_component:
+			health_component.damage(10)
 		
 	# Hit a wall?
 	if body is GridMap:

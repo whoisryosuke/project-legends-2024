@@ -94,3 +94,6 @@ func shoot_projectile():
 	projectile.initial_rotation = rotation
 	projectile.direction = model_angle
 	scene_root.add_child.call_deferred(projectile)
+
+func death():
+	print("Player has died, triggering animation and restart")

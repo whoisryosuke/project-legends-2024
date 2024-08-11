@@ -5,7 +5,7 @@ extends Area3D
 @export var immediate_teleport = false
 
 func _on_body_entered(body):
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and immediate_teleport:
 		print("Collided with door!: ", body, scene_to_load)
 		
 		# Get access to game and change level

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bx6ss8eclrxl4"]
+
+[ext_resource type="Script" path="res://scripts/balloon_enemy.gd" id="1_owoag"]
+[ext_resource type="PackedScene" uid="uid://osr63qf87du5" path="res://scenes/components/health.tscn" id="2_g8m86"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wtt1r"]
+
+[node name="BalloonEnemy" type="RigidBody3D" groups=["Enemies"]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_owoag")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_wtt1r")
+
+[node name="Health" parent="." instance=ExtResource("2_g8m86")]
+health = 10
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

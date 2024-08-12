@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ouvb0u4k7dr4"]
+[gd_scene load_steps=6 format=3 uid="uid://ouvb0u4k7dr4"]
 
 [ext_resource type="PackedScene" uid="uid://cy36aygvs66pn" path="res://assets/models/gobot/gobot_skin.tscn" id="1_c1dgc"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_mvikn"]
@@ -8,25 +8,30 @@
 radius = 0.676564
 height = 1.42795
 
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_7hocq"]
+
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
-collision_mask = 7
+collision_mask = 5
 script = ExtResource("1_mvikn")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="PlayerCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.745259, 0.00753546)
 shape = SubResource("CapsuleShape3D_cqkhd")
 
 [node name="GobotSkin" parent="." instance=ExtResource("1_c1dgc")]
 
-[node name="PivotPlayer" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.995416, -0.0956373, 0, 0.0956373, 0.995416, 0, 0, 0)
-
-[node name="PivotCam" type="Node3D" parent="PivotPlayer"]
-transform = Transform3D(1, 0, 0, 0, 0.95256, -0.304349, 0, 0.304349, 0.95256, 0, 1.95106, -2.83697)
-
-[node name="Camera3D" type="Camera3D" parent="PivotPlayer/PivotCam"]
-unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-
 [node name="Health" parent="." instance=ExtResource("3_5std1")]
 health = 100
+
+[node name="PivotPlayer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.97437, 0.224951, 0, -0.224951, 0.97437, 0, 1.698, 0)
+
+[node name="Spring" type="SpringArm3D" parent="PivotPlayer"]
+collision_mask = 7
+shape = SubResource("SeparationRayShape3D_7hocq")
+spring_length = 3.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="PivotPlayer/Spring"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, -7.45058e-09, 0, 7.45058e-09, 1, 0, 0, 3.69)

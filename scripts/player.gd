@@ -9,6 +9,9 @@ const JUMP_VELOCITY = 4.5
 @onready var scene_root = get_tree().get_root()
 @onready var projectile_model = load("res://scenes/shared/projectile.tscn")
 
+# Constants
+const PROJECTILE_OFFSET = 1.0
+
 # Local Variables
 var input_disabled = false
 var speed = SPEED
@@ -53,8 +56,8 @@ func _physics_process(delta):
 	var rotate_vector = Vector3(1,1,1).rotated(Vector3(0,1,0), cam_turn)
 	var direction = (transform.basis.rotated(Vector3(0,1,0), cam_turn) * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = -direction.x * speed
-		velocity.z = -direction.z * speed
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
@@ -90,7 +93,9 @@ func _physics_process(delta):
 func shoot_projectile():
 	print("Shooting")
 	var projectile = projectile_model.instantiate()
-	projectile.initial_position = position
+	# Offset projectile in front of player (ideally in position of blaster)
+	var position_direction = Vector3(0,0,PROJECTILE_OFFSET).rotated(Vector3(0,1,0), model_angle)
+	projectile.initial_position = position + position_direction
 	projectile.initial_rotation = rotation
 	projectile.direction = model_angle
 	scene_root.add_child.call_deferred(projectile)

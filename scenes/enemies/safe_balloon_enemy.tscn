@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://xdukls12bjxg"]
+
+[ext_resource type="PackedScene" uid="uid://bx6ss8eclrxl4" path="res://scenes/enemies/balloon_enemy.tscn" id="1_5h6xb"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_24ytq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2mub"]
+albedo_color = Color(0, 0.427451, 0.588235, 1)
+
+[node name="SafeBalloonEnemy" type="Node3D"]
+
+[node name="BalloonEnemy" parent="." instance=ExtResource("1_5h6xb")]
+
+[node name="BalloonSafeMesh" type="MeshInstance3D" parent="BalloonEnemy"]
+mesh = SubResource("SphereMesh_24ytq")
+surface_material_override/0 = SubResource("StandardMaterial3D_p2mub")

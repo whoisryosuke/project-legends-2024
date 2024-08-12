@@ -2,7 +2,7 @@ extends Area3D
 
 @export var scene_to_load : PackedScene
 # Teleport on collide vs pressing button
-@export var immediate_teleport = false
+@export var immediate_teleport = true
 
 func _on_body_entered(body):
 	if body.is_in_group("Player") and immediate_teleport:
